@@ -1,15 +1,17 @@
 Class {
-	#name : #CalibrationLine,
-	#superclass : #Object,
+	#name : 'CalibrationLine',
+	#superclass : 'Object',
 	#instVars : [
 		'foundStringsForInput',
 		'collectionOfLineMatches',
 		'stringsCollectionForCalibration'
 	],
-	#category : #'Dmo-AdventOfCode2023-J11andJ12'
+	#category : 'Dmo-AdventOfCode2023-J11andJ12',
+	#package : 'Dmo-AdventOfCode2023',
+	#tag : 'J11andJ12'
 }
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 CalibrationLine >> compute: aString with: anOrderedCollection [
 
 	| matchedIntervals sortedKeys first last |
@@ -35,13 +37,13 @@ CalibrationLine >> compute: aString with: anOrderedCollection [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CalibrationLine >> initialize [ 
 
 collectionOfLineMatches := OrderedCollection new.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 CalibrationLine >> matchedIntervals: aString for: aStringToFind [
 
 	| matchedIntervals |
@@ -54,13 +56,13 @@ CalibrationLine >> matchedIntervals: aString for: aStringToFind [
 	^ matchedIntervals
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 CalibrationLine >> stringsCollectionForCalibration [
 
 ^ stringsCollectionForCalibration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CalibrationLine >> stringsCollectionForCalibration: anOrderedCollectionOfStrings [
 
 	stringsCollectionForCalibration := anOrderedCollectionOfStrings

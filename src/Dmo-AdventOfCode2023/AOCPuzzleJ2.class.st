@@ -29,12 +29,14 @@ Determine which games would have been possible if the bag had been loaded with o
 
 "
 Class {
-	#name : #AOCPuzzleJ2,
-	#superclass : #AOCPuzzle,
-	#category : #'Dmo-AdventOfCode2023-J21'
+	#name : 'AOCPuzzleJ2',
+	#superclass : 'AOCPuzzle',
+	#category : 'Dmo-AdventOfCode2023-J21',
+	#package : 'Dmo-AdventOfCode2023',
+	#tag : 'J21'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AOCPuzzleJ2 class >> puzzleInput [ 
 
 ^

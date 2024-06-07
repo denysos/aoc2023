@@ -1,10 +1,12 @@
 Class {
-	#name : #CalibrationTest,
-	#superclass : #TestCase,
-	#category : #'Dmo-AdventOfCode2023-J11andJ12'
+	#name : 'CalibrationTest',
+	#superclass : 'TestCase',
+	#category : 'Dmo-AdventOfCode2023-J11andJ12',
+	#package : 'Dmo-AdventOfCode2023',
+	#tag : 'J11andJ12'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CalibrationTest class >> puzzleInput [
 
 ^ '9dlvndqbddghpxc
@@ -1009,12 +1011,12 @@ foureightmppchbgz8lqbzqbjztwo7cksqxns
 zvhzgfpkhkone93nine'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CalibrationTest >> puzzleInput [
 	^ self class puzzleInput
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CalibrationTest >> testComputeOneLineCalibrationWith1Test [
 
 	| inputLine result |
@@ -1027,7 +1029,7 @@ CalibrationTest >> testComputeOneLineCalibrationWith1Test [
 	self assert: result equals: 11
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CalibrationTest >> testComputeOneLineCalibrationWith1and2 [
 
 	| inputLine result |
@@ -1039,7 +1041,7 @@ CalibrationTest >> testComputeOneLineCalibrationWith1and2 [
 	self assert: result equals: 12
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CalibrationTest >> testComputeOneLineCalibrationWithAlibrationJ11 [
 
 	| inputLine result |
@@ -1051,7 +1053,7 @@ CalibrationTest >> testComputeOneLineCalibrationWithAlibrationJ11 [
 	self assert: result equals: 11
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 CalibrationTest >> testMultiLine [
 
 	| inputLine result |

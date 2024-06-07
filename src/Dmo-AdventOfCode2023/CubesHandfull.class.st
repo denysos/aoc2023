@@ -2,18 +2,61 @@
 a cube handful is composed of red, green and blue cubes
 "
 Class {
-	#name : #CubesHandfull,
-	#superclass : #Object,
+	#name : 'CubesHandfull',
+	#superclass : 'Object',
 	#instVars : [
-		'red',
-		'green',
-		'blue'
+		'handfull'
 	],
-	#category : #'Dmo-AdventOfCode2023-J21'
+	#category : 'Dmo-AdventOfCode2023-J21',
+	#package : 'Dmo-AdventOfCode2023',
+	#tag : 'J21'
 }
 
-{ #category : #'instance creation' }
-CubesHandfull class >> r: anIntR g: anIntG b: anIntB [
+{ #category : 'instance creation' }
+CubesHandfull class >> fromString: aString [
 
-^ self new red: anIntR ; green: anIntG ; blue: anIntB 
+	| splitedHandfullCollection newCubeHandfull |
+	newCubeHandfull := self new.
+
+	splitedHandfullCollection := aString findTokens: $,.
+	splitedHandfullCollection do: [ :colorWithValue |
+		| colorAndValue |
+		colorAndValue := colorWithValue findTokens: Character space.
+		(#( 'blue' 'red' 'green' ) anySatisfy: [ :each |
+			each = ((colorAndValue at: 2) 
+			) ]) ifTrue: [
+			newCubeHandfull handfull
+				at: ((colorAndValue at: 2) 
+				)
+				put: ((colorAndValue at: 1) 
+				) asInteger ] ].
+
+	^ newCubeHandfull
+]
+
+{ #category : 'as yet unclassified' }
+CubesHandfull class >> red: anIntRed green: anIntGreen blue: anIntBlue [
+
+^ (self new handfull ) at: 'red' put: anIntRed ;
+									at: 'green' put: anIntGreen ;
+									at: 'blue' put: anIntBlue;
+									yourself .
+]
+
+{ #category : 'accessing' }
+CubesHandfull >> handfull [
+
+	^ handfull
+]
+
+{ #category : 'accessing' }
+CubesHandfull >> handfull: anObject [
+
+	handfull := anObject
+]
+
+{ #category : 'initialization' }
+CubesHandfull >> initialize [ 
+
+self handfull: Dictionary new.
 ]

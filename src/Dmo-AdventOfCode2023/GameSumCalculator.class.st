@@ -2,12 +2,17 @@
 compute sum of games Id, selected by a validator
 "
 Class {
-	#name : #GameSumCalculator,
-	#superclass : #Object,
-	#category : #'Dmo-AdventOfCode2023-J21'
+	#name : 'GameSumCalculator',
+	#superclass : 'Object',
+	#instVars : [
+		'inputArray'
+	],
+	#category : 'Dmo-AdventOfCode2023-J21',
+	#package : 'Dmo-AdventOfCode2023',
+	#tag : 'J21'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GameSumCalculator class >> gamesSamples [
 
 ^
@@ -18,7 +23,7 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 GameSumCalculator class >> puzzleInput [ 
 
 ^
@@ -125,9 +130,17 @@ Game 100: 14 green, 6 blue, 12 red; 2 green, 1 blue, 2 red; 12 red, 7 blue, 3 gr
 '
 ]
 
-{ #category : #initialize }
-GameSumCalculator >> compute:  aString with:  aValidator [
+{ #category : 'initialize' }
+GameSumCalculator >> compute: aString with: aValidator [
 
+	| parsedGames selectedGames |
+	inputArray := aString findTokens: Character cr.
 
- 
+	parsedGames := inputArray collect: [ :gameString |
+		               Game from: gameString ].
+	
+   selectedGames := parsedGames select: [ :each | aValidator validate: each ].
+
+"^ (selectedGames reduce: [ :a :b | (a id) + (b id) ]) sum."
+^ (selectedGames inject: 0 into: [ :sum :each | sum + each id]).
 ]

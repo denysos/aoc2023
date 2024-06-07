@@ -8,37 +8,53 @@ jour 2:
 ""CalibrationComputer new compute:  (CalibrationComputer puzzleInput) with: (CalibrationComputer callibrationCollectionForJ12) .""
 "
 Class {
-	#name : #CalibrationComputer,
-	#superclass : #Object,
+	#name : 'CalibrationComputer',
+	#superclass : 'Object',
 	#instVars : [
 		'foundStringsForInput',
 		'collectionOfLineMatches',
 		'inputArray',
 		'stringsCollectionForCalibration'
 	],
-	#category : #'Dmo-AdventOfCode2023-J11andJ12'
+	#category : 'Dmo-AdventOfCode2023-J11andJ12',
+	#package : 'Dmo-AdventOfCode2023',
+	#tag : 'J11andJ12'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CalibrationComputer class >> callibrationCollectionForJ11 [
 
 ^ #( '1' '2' '3' '4' '5' '6' '7' '8' '9' '0') asOrderedCollection 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CalibrationComputer class >> callibrationCollectionForJ12 [
 
 ^ self callibrationCollectionForJ11 , #('one' 'two' 'three' 'four' 'five' 'six' 'seven' 'eight' 'nine' 'zero') 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CalibrationComputer class >> digitValuesForCalibration [
 
 ^ Dictionary newFromKeys:  self callibrationCollectionForJ12  
                andValues: #('1' '2' '3' '4' '5' '6' '7' '8' '9' '0' '1' '2' '3' '4' '5' '6' '7' '8' '9' '0').
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'exec' }
+CalibrationComputer class >> execPuzzleJ1 [
+<script>
+
+^ self new compute:  (self puzzleInput) with: (self callibrationCollectionForJ11) .
+]
+
+{ #category : 'as yet unclassified' }
+CalibrationComputer class >> execPuzzleJ2 [
+<script>
+
+^ self new compute:  (self puzzleInput) with: (self callibrationCollectionForJ12).
+]
+
+{ #category : 'as yet unclassified' }
 CalibrationComputer class >> puzzleInput [
 
 ^ '9dlvndqbddghpxc
@@ -1043,39 +1059,35 @@ foureightmppchbgz8lqbzqbjztwo7cksqxns
 zvhzgfpkhkone93nine'
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 CalibrationComputer >> compute: aString with: anOrderedCollection [
 
 	| calibration |
-	"self listOfStringToFind do: [ :stringToTest | (RxMatcher for: (RxParser safelyParse: stringToTest)  ) matchingRangesIn:  aString]"
-	self stringsCollectionForCalibration: anOrderedCollection.
 
+	self stringsCollectionForCalibration: anOrderedCollection.
 	inputArray := aString findTokens: Character  cr.
 	
-"calibration :=	 inputArray do: [ :line | (CalibrationLine new) compute: line  with: self stringsCollectionForCalibration.
-		 ]."
 	calibration := inputArray inject: 0 into: [ :sum :line | sum + ((CalibrationLine new) compute: line  with: self stringsCollectionForCalibration).
 		 ].
-	"((CalibrationLine new) compute: aString  with: self stringsCollectionForCalibration)."
 
 ^ calibration     
 
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CalibrationComputer >> initialize [ 
 
 collectionOfLineMatches := OrderedCollection new.
 ]
 
-{ #category : #initialize }
+{ #category : 'initialize' }
 CalibrationComputer >> stringsCollectionForCalibration [
 
 ^ stringsCollectionForCalibration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CalibrationComputer >> stringsCollectionForCalibration: anOrderedCollectionOfStrings [
 
 	stringsCollectionForCalibration := anOrderedCollectionOfStrings

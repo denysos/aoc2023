@@ -1,23 +1,24 @@
 Class {
-	#name : #AOCPuzzle,
-	#superclass : #Object,
-	#category : #'Dmo-AdventOfCode2023'
+	#name : 'AOCPuzzle',
+	#superclass : 'Object',
+	#category : 'Dmo-AdventOfCode2023',
+	#package : 'Dmo-AdventOfCode2023'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AOCPuzzle class >> computeJ1 [
 
 	
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AOCPuzzle class >> computeJ2 [
 
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 AOCPuzzle class >> isAbstract [ 
 ^true
 ]
