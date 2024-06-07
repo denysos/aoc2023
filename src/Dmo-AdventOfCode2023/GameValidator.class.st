@@ -35,12 +35,14 @@ GameValidator >> referenceCubeHandful: anObject [
 
 { #category : 'testing' }
 GameValidator >> validate: aGame [
-
-
-"^ false"
-^ aGame cubesHandfulls allSatisfy: [ :each | 
+	"^ aGame cubesHandfulls allSatisfy: [ :each | 
 	((each handfull at: 'red' ifAbsent: 0) <= (referenceCubeHandful at: 'red' ifAbsent: 0) 
 	and: [ (each handfull at: 'green' ifAbsent: 0) <= (referenceCubeHandful at: 'green' ifAbsent: 0) ])  
 	and: [ (each handfull at: 'blue' ifAbsent: 0) <= (referenceCubeHandful at: 'blue' ifAbsent: 0) ]
-	] 
+	] "
+
+	^ aGame cubesHandfulls allSatisfy: [ :each |
+		  each handfull keys allSatisfy: [ :cubeColor |
+			  (each handfull at: cubeColor)
+			  <= (referenceCubeHandful at: cubeColor ifAbsent: 0) ] ]
 ]
