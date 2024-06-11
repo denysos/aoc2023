@@ -44,5 +44,5 @@ GameValidator >> validate: aGame [
 	^ aGame cubesHandfulls allSatisfy: [ :each |
 		  each handfull keys allSatisfy: [ :cubeColor |
 			  (each handfull at: cubeColor)
-			  <= (referenceCubeHandful at: cubeColor ifAbsent: 0) ] ]
+			  <= ((referenceCubeHandful handfull) at: cubeColor ifAbsent: 0) ] ]
 ]

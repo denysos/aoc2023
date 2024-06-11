@@ -15,6 +15,9 @@ Class {
 { #category : 'instance creation' }
 CubesHandfull class >> fromString: aString [
 
+"créé une nouvelle instance à partir d'une chaine de caractère
+du type : '12 red, 13 green, 14 blue'"
+
 	| splitedHandfullCollection newCubeHandfull |
 	newCubeHandfull := self new.
 
@@ -37,10 +40,14 @@ CubesHandfull class >> fromString: aString [
 { #category : 'as yet unclassified' }
 CubesHandfull class >> red: anIntRed green: anIntGreen blue: anIntBlue [
 
-^ (self new handfull ) at: 'red' put: anIntRed ;
+|newCubeHandfull|
+
+newCubeHandfull := self new.
+(newCubeHandfull handfull ) at: 'red' put: anIntRed ;
 									at: 'green' put: anIntGreen ;
-									at: 'blue' put: anIntBlue;
-									yourself .
+									at: 'blue' put: anIntBlue.
+									
+^ newCubeHandfull
 ]
 
 { #category : 'accessing' }
