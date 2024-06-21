@@ -42,6 +42,30 @@ Game >> cubesHandfulls [
 	^ cubesHandfulls
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> findMinimalPossibleBagForTheGame [
+	"^ CubesHandfull red: 5 green: 6 blue: 10 ."
+
+	| minimumSetHandfull |
+	minimumSetHandfull := CubesHandfull new.
+	self cubesHandfulls do: [ :each |
+		self findMinimumBagFor: each comparedTo: minimumSetHandfull on: 'blue'.
+		self findMinimumBagFor: each comparedTo: minimumSetHandfull on: 'green'.
+		self findMinimumBagFor: each comparedTo: minimumSetHandfull on: 'red'.].
+
+	^ minimumSetHandfull
+]
+
+{ #category : 'private' }
+Game >> findMinimumBagFor: each comparedTo: minimumSetHandfull on: aColorString [
+
+	(each handfull at: aColorString) > (minimumSetHandfull handfull at: aColorString)
+		ifTrue: [
+			minimumSetHandfull handfull
+				at: aColorString
+				put: (each handfull at: aColorString) ]
+]
+
 { #category : 'accessing' }
 Game >> gameAsString [
 

@@ -1,6 +1,6 @@
 "
 result day2-1: 2369
-result day2-2: ????
+result day2-2: 66363
 
 --- Day 2: Cube Conundrum ---
 
@@ -71,6 +71,18 @@ AOCPuzzleJ2 class >> execPuzzle1 [
 
 validator := GameValidator from: (CubesHandfull fromString: '12 red, 13 green, 14 blue') .
 ^ GameSumCalculator new compute: (self puzzleInput ) with: validator. 
+]
+
+{ #category : 'as yet unclassified' }
+AOCPuzzleJ2 class >> execPuzzle2 [
+
+	| validator |
+	validator := GameValidatorAlwaysValid from: nil.
+	^ GameSumCalculator new
+		  compute: self puzzleInput
+		  with: validator
+		  postTreatment: [ :sum :each |
+			  sum + each findMinimalPossibleBagForTheGame computePower ]
 ]
 
 { #category : 'as yet unclassified' }

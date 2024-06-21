@@ -138,9 +138,30 @@ GameSumCalculator >> compute: aString with: aValidator [
 
 	parsedGames := inputArray collect: [ :gameString |
 		               Game from: gameString ].
-	
-   selectedGames := parsedGames select: [ :each | aValidator validate: each ].
 
-"^ (selectedGames reduce: [ :a :b | (a id) + (b id) ]) sum."
-^ (selectedGames inject: 0 into: [ :sum :each | sum + each id]).
+	selectedGames := (aValidator validate: nil)
+		                 ifFalse: [
+		                 parsedGames select: [ :each |
+			                 aValidator validate: each ] ]
+		                 ifTrue: [ parsedGames ].
+
+	^ selectedGames inject: 0 into: [ :sum :each | sum + each id ]
+]
+
+{ #category : 'initialize' }
+GameSumCalculator >> compute: aString with: aValidator postTreatment: aBloc [
+
+	| parsedGames selectedGames |
+	inputArray := aString findTokens: Character cr.
+
+	parsedGames := inputArray collect: [ :gameString |
+		               Game from: gameString ].
+
+	selectedGames := (aValidator validate: nil)
+		                 ifFalse: [
+		                 parsedGames select: [ :each |
+			                 aValidator validate: each ] ]
+		                 ifTrue: [ parsedGames ].
+
+	^ selectedGames inject: 0 into: aBloc.
 ]

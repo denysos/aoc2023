@@ -50,6 +50,12 @@ newCubeHandfull := self new.
 ^ newCubeHandfull
 ]
 
+{ #category : 'as yet unclassified' }
+CubesHandfull >> computePower [
+
+^ ((self handfull at: 'blue') * (self handfull  at: 'red') * (self handfull at: 'green')).
+]
+
 { #category : 'accessing' }
 CubesHandfull >> handfull [
 
@@ -65,5 +71,5 @@ CubesHandfull >> handfull: anObject [
 { #category : 'initialization' }
 CubesHandfull >> initialize [ 
 
-self handfull: Dictionary new.
+self handfull: (Dictionary newFrom: {'blue' -> 0. 'red' -> 0. 'green' -> 0}).
 ]
